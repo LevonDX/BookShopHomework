@@ -20,7 +20,7 @@ namespace BookStore
 
 
             /////////////// Just for testing ///////////////
-            
+
             //bookRepository.Load();
 
             //bookRepository.Books.Add(new Book() { Name = "Book 1", Year = 2020, Price = 100 });
@@ -36,12 +36,35 @@ namespace BookStore
         private void btnAddBook_Click(object sender, EventArgs e)
         {
             FormAddBook formAddBook = new FormAddBook();
-            if(formAddBook.ShowDialog() == DialogResult.OK)
+            if (formAddBook.ShowDialog() == DialogResult.OK)
             {
                 Book book = formAddBook.Book;
 
                 bookRepository.Add(book);
 
+                bookRepository.Load();
+
+                this.dgvBooks.DataSource = null;
+                this.dgvBooks.DataSource = bookRepository.Books;
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if(this.dgvBooks.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a book to edit");
+                return;
+            }
+
+            int? id = this.dgvBooks.SelectedRows[0].Cells["ID"].Value as int?;
+
+            Book book = bookRepository.GetBookByID(id);
+
+            FormAddBook formAddBook = new FormAddBook(book);
+            if(formAddBook.ShowDialog() == DialogResult.OK)
+            {
+                bookRepository.SaveChanges();
                 bookRepository.Load();
 
                 this.dgvBooks.DataSource = null;

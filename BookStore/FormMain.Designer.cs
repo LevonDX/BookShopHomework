@@ -30,6 +30,7 @@
         {
             dgvBooks = new DataGridView();
             btnAddBook = new Button();
+            btnEdit = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvBooks).BeginInit();
             SuspendLayout();
             // 
@@ -54,11 +55,22 @@
             btnAddBook.UseVisualStyleBackColor = true;
             btnAddBook.Click += btnAddBook_Click;
             // 
+            // btnEdit
+            // 
+            btnEdit.Location = new Point(1042, 171);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(394, 58);
+            btnEdit.TabIndex = 1;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1543, 1285);
+            Controls.Add(btnEdit);
             Controls.Add(btnAddBook);
             Controls.Add(dgvBooks);
             Name = "FormMain";
@@ -71,5 +83,6 @@
 
         private DataGridView dgvBooks;
         private Button btnAddBook;
+        private Button btnEdit;
     }
 }

@@ -22,6 +22,15 @@ namespace BookStore
             InitializeComponent();
         }
 
+        public FormAddBook(Book book) : this()
+        {
+            this.book = book;
+
+            this.txtName.Text = book.Name;
+            this.txtYear.Text = book.Year.ToString();
+            this.txtPrice.Text = book.Price.ToString();
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             book.Name = txtName.Text;

@@ -103,5 +103,13 @@ namespace BookStore.Data
                     Update(book);
             }
         }
+
+        public Book GetBookByID(int? id)
+        {
+            if(id == null)
+                return null;
+            
+            return books.SingleOrDefault(b => b.ID == id.Value);
+        }
     }
 }
